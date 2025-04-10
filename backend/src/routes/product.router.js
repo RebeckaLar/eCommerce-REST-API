@@ -11,10 +11,13 @@ const router = express.Router()
 // })
 
 router.post('/', createProduct) //CREATE
+
 router.get('/', () => {}) //READ
 router.get('/:id', () => {}) //READ
+
 router.put('/:id', () => {}) //UPDATE
 router.patch('/:id', () => {}) //UPDATE
+
 router.delete('/:id', () => {}) //DELETE
 
 
