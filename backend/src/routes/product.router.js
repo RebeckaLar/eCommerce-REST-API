@@ -1,24 +1,20 @@
 import express from 'express'
 import { createProduct, getProducts, getProduct, updateProduct, deleteProduct } from '../controllers/product.controller.js'
+// import { sendMessage } from '../controllers/message.controller.js'
 
-const router = express.Router()
+const productRoutes = express.Router()
+// const messageRoutes = express.Router()
 
-// router.get('/', (req, res) => {
-//     res.send('hämta ALLA')
-// })
-// router.get('/:id', (req, res) => {
-//     res.send('hämta EN')
-// })
+productRoutes.post('/', createProduct) //CREATE
 
-router.post('/', createProduct) //CREATE
+productRoutes.get('/', getProducts) //READ
+productRoutes.get('/:id', getProduct) //READ
 
-router.get('/', getProducts) //READ
-router.get('/:id', getProduct) //READ
+productRoutes.put('/:id', updateProduct) //UPDATE
+productRoutes.patch('/:id', updateProduct) //UPDATE
 
-router.put('/:id', updateProduct) //UPDATE
-router.patch('/:id', updateProduct) //UPDATE
-
-router.delete('/:id', deleteProduct) //DELETE
+productRoutes.delete('/:id', deleteProduct) //DELETE
+// messageRoutes.post('/', sendMessage)
 
 
-export default router
+export default productRoutes
