@@ -1,5 +1,5 @@
 import express from 'express'
-import { createProduct } from '../controllers/product.controller.js'
+import { createProduct, getProducts, getProduct, updateProduct, deleteProduct } from '../controllers/product.controller.js'
 
 const router = express.Router()
 
@@ -12,13 +12,13 @@ const router = express.Router()
 
 router.post('/', createProduct) //CREATE
 
-router.get('/', () => {}) //READ
-router.get('/:id', () => {}) //READ
+router.get('/', getProducts) //READ
+router.get('/:id', getProduct) //READ
 
-router.put('/:id', () => {}) //UPDATE
-router.patch('/:id', () => {}) //UPDATE
+router.put('/:id', updateProduct) //UPDATE
+router.patch('/:id', updateProduct) //UPDATE
 
-router.delete('/:id', () => {}) //DELETE
+router.delete('/:id', deleteProduct) //DELETE
 
 
 export default router
