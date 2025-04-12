@@ -12,8 +12,6 @@ import mongoose from 'mongoose'
 
 export const createProduct = async (req, res) => {
     const { name, price } = req.body
-    // res.json(newProduct)
-    // console.log( name, price)
 
     if(!name || !price) {
         return res.status(400).json({ message: 'Name and price are required' })
@@ -76,3 +74,4 @@ export const deleteProduct = async (req, res) => {
     }
     res.status(204).json(product)
 }
+
