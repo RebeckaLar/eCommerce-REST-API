@@ -1,23 +1,14 @@
 import Product from '../models/product.model.js'
 import mongoose from 'mongoose'
 
-// export const createProduct = async (req, res) => {
-//     // res.send('skapa')
-//     const newProduct = await Product.create({
-//         name: 'Product 1',
-//         price: 123
-//     })
-//     res.json(newProduct)
-// }
-
 export const createProduct = async (req, res) => {
-    const { name, price } = req.body
+    const { name, price, description, category, images } = req.body
 
-    if(!name || !price) {
-        return res.status(400).json({ message: 'Name and price are required' })
+    if(!name || !price || !description || !category || !images) {
+        return res.status(400).json({ message: 'Name, price, description, category and images are required' })
     }
 
-    const newProduct = await Product.create({ name, price })
+    const newProduct = await Product.create({ name, price, description, category, images })
     res.status(201).json(newProduct)
 }
 
@@ -42,7 +33,7 @@ export const getProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
     const { id } = req.params
-    const { name, price } = req.body
+    const { name, price, description, category, images } = req.body
     if(!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ message: "invalid id" })
     }
@@ -50,6 +41,9 @@ export const updateProduct = async (req, res) => {
     const toUpdate = {}
     if(name) toUpdate.name = name
     if(price) toUpdate.price = price
+    if(description) toUpdate.description = description
+    if(category) toUpdate.category = category
+    if(images) toUpdate.images = images
 
     if(Object.keys(toUpdate).length === 0) {
         res.status(400).json({ message: "No changes provided"})
