@@ -14,6 +14,8 @@ export const sendMessage = async (req, res) => {
         return res.status(400).json({ message: 'Name, email and message are required' })
     }
 
+    //validera email
+
     const newMessage = await Message.create({ name, email, message })
     console.log( name, email, message)
     // res.status(201).json(newMessage) //Sparas i databasen
