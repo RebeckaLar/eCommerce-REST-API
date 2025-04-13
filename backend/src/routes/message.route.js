@@ -3,7 +3,7 @@ import { sendMessage } from '../controllers/message.controller.js'
 
 const messageRoutes = express.Router()
 
-messageRoutes.post('/', sendMessage) //PORT
+messageRoutes.post('/', sendMessage)
 
 
 export default messageRoutes
