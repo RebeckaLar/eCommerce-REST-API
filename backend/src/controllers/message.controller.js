@@ -1,23 +1,21 @@
 import Message from '../models/message.model.js'
-import mongoose from 'mongoose'
 
-//Meddelanden: 
-// Ni ska skapa en separat endpoint där användaren kan skicka ett meddelande med en POST. 
-// Där ska ni validera att fälten `name`, `email` & `message` har skickats med. 
-// Returnera en status 200 om fälten är korrekt skickade, annars en status 400. 
-// Meddelanden behöver inte sparas i databasen.
 export const sendMessage = async (req, res) => {
     const { name, email, message } = req.body
-    // res.json(newProduct)
 
     if(!name || !email || !message ) {
         return res.status(400).json({ message: 'Name, email and message are required' })
     }
 
-    //validera email
+    //Validate email
+    let validRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!validRegex.test(email)) {
+        console.log(email)
+        return res.status(400).json({ message: 'You need to enter a valid email-adress' })
+    }
 
     const newMessage = await Message.create({ name, email, message })
-    console.log( name, email, message)
-    // res.status(201).json(newMessage) //Sparas i databasen
+    console.log(newMessage)
+    // res.status(201).json(newMessage) //Saves message to database
     
 }

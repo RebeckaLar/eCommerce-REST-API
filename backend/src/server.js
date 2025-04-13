@@ -1,10 +1,8 @@
-// server.js ansvarsområden: 
-// - koppla upp den server
-// - koppla upp sig mot vår databas
-
+//server.js starts the server and connects it to the database
 import app from "./app.js";
 import mongoose from 'mongoose'
 
+//See .env.example, use own values for PORT and MONGO_URI
 const PORT = process.env.PORT || 8000
 const MONGO_URI = process.env.MONGO_URI
 
